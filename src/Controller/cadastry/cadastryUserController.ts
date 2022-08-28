@@ -1,22 +1,31 @@
-import Validation from "../../Models/user/cadastry/validation";
-import cadastryUser from '../../Models/user/cadastry/cadastryUserModel'
+import BodyValidation from "./validation";
+import cadastryUser from "../../Models/user/cadastry/cadastryUserModel";
+import { Request, Response } from "express";
 
-async function cadastryUserController(name: string, surname: string, email: string, password: string) {
+async function cadastryUserController(req: Request, res: Response) {
+  const { status, message, body } = new BodyValidation(req.body);
 
-  const User = new Validation(name, surname, email, password)
-  const ValidationPassed = User.status === 201 && User.message === undefined;
+  const ValidationPassed = status === 201 && message === undefined;
 
   if (ValidationPassed) {
-    const { name, surname, email, password} = User
-    try {
-      await cadastryUser({ name, surname, email, password})
-      return User
-    } catch (err) {
-      return {status: User.status, message: User.message}
-    };
 
+    const save = async () => {
+      try {
+        const response = new cadastryUser({ ...body });
+        await response.cadastryUserSchema();
+        
+        const ErrorInString = JSON.stringify(response.error);
+        if (response.error) throw new Error(ErrorInString);
+        return res.status(201).json();
+      } catch (err) {
+        const { status, message } = JSON.parse(err.message);
+        return res.status(status).json(message);
+      }
+    };
+    return save();
   } else {
-    return {status: User.status, message: User.message}
+    console.log(message);
+    return res.status(status).json(message);
   }
 }
 
