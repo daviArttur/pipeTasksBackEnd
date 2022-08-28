@@ -1,21 +1,21 @@
-require("dotenv").config()
-import connect from "../db/connect"
-import express from "express"
+import dotenv from "dotenv";
+dotenv.config();
+import router from "./Routes/routes";
+import connect from "../db/connect";
+import express from "express";
 
-// Route
-import cadastry from "./Views/Routes/cadastry/cadastryUserView"
 
-const app = express()
+const app = express();
 
 // Connect database
-connect()
+connect();
 
 // View body in request
-app.use(express.json())
+app.use(express.json());
 
-// Cadastry user
-app.post("/cadastry", cadastry)
+// Routes
+app.use("/", router);
 
-app.listen(3000)
+app.listen(3000);
 
-export default app
+export default app;
