@@ -8,7 +8,6 @@ async function cadastryUserController(req: Request, res: Response) {
   const ValidationPassed = status === 201 && message === undefined;
 
   if (ValidationPassed) {
-
     const save = async () => {
       try {
         const response = new cadastryUser({ ...body });
@@ -24,7 +23,6 @@ async function cadastryUserController(req: Request, res: Response) {
     };
     return save();
   } else {
-    console.log(message);
     return res.status(status).json(message);
   }
 }
