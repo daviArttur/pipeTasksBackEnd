@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
-import router from "./Routes/routes";
+import routerCadastry from "./Routes/cadastry/cadastry";
+import routerAuth from "./Routes/auth/auth";
 import connect from "../db/connect";
 import express from "express";
 
@@ -14,7 +15,12 @@ connect();
 app.use(express.json());
 
 // Routes
-app.use("/", router);
+
+//cadastry
+app.use("/", routerCadastry);
+
+//auth
+app.use("/", routerAuth);
 
 app.listen(3000);
 
