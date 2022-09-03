@@ -32,8 +32,13 @@ describe("test methods validate function", () => {
 
     const User = new Validation(newUserObject);
     User.removeSpacing();
-
-    expect(User.body).toEqual(UserObjectExample);
+    const { name, surname, email, password } = UserObjectExample;
+    expect(User.body).toEqual({
+      name,
+      surname,
+      email,
+      password,
+    });
   });
 
   it("return error, case, value contain more than one word", () => {
