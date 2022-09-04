@@ -4,8 +4,7 @@ import { Request, Response } from "express";
 import createJwtToken from "../../helper/jwt/createJwtToken";
 import ComparePassword from "../../helper/login/comparePassword";
 
-
-async function loginController (req: Request, res: Response) {
+async function authController (req: Request, res: Response) {
   const { email, password } = req.body;
 
   const { status, message, id } = await new ComparePassword(email, password).getUserDb();
@@ -20,4 +19,4 @@ async function loginController (req: Request, res: Response) {
   }
 }
 
-export default loginController;
+export default authController;
