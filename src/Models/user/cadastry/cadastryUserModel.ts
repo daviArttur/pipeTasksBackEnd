@@ -12,19 +12,23 @@ interface IcreateUser {
 
 const userSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    required: true
   },
   surname: {
-    type: String
+    type: String,
+    required: true
   },
   email: {
     type: String,
     lowercase: true,
-    unique: true
+    unique: true,
+    required: true
   },
   password: {
     type: String,
-    select: false
+    select: false,
+    required: true
   },
   created: {
     type: Date,
@@ -54,15 +58,15 @@ class cadastryUser {
   }
 
   async createSchema() {
-    const modelUser = mongoose.model("users", userSchema);
+    const modelUser = mongoose.model("user", userSchema);
     this.userSchema = new modelUser({ ...this.#body });
     return this.userSchema;
   }
 
-  async cadastryUserSchema() {
+  async cadastryUserSchema(): Promise<{ status: number, message: string }> {
     try {
-      const UserSave = await this.userSchema.save();
-      return UserSave;
+      await this.userSchema.save();
+      return { status: 201, message: "" };
     } catch (err) {
       const { code, errmsg }: MongoServerError = err;
       const errorObjStatus = new handleErrorDb(code, errmsg);
