@@ -66,7 +66,7 @@ class cadastryUser {
   async cadastryUserSchema(): Promise<{ status: number, message: string }> {
     try {
       await this.userSchema.save();
-      return { status: 201, message: "" };
+      return { status: 201, message: "Usuário cadastrado com sucesso" };
     } catch (err) {
       const { code, errmsg }: MongoServerError = err;
       const errorObjStatus = new handleErrorDb(code, errmsg);
