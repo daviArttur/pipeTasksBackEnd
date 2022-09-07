@@ -9,21 +9,19 @@ import connectTestDB from "./helper/test/connect";
 
 const app = express();
 
-const PORT = process.env.PORT;
-
-
-console.log(process.env.PORT);
+console.log(process.env.NODE_ENV);
 // Connect database
-
-async function a() {
-  if (PORT === "4000") {
-    await connectDevDB();
-  } else if (PORT === "3000") {
-    await connectTestDB(process.env.DB_USER!, process.env.DB_PASS!);
-  }
+if (process.env.NODE_ENV !== "test") {
+  app.listen(3000);
+} else {
+  app.listen(3001);
 }
-a();
-app.listen(PORT);
+
+if (process.env.NODE_ENV === "test" || process.env.ENVIROMENT === "production") {
+  connectTestDB(process.env.DB_USER!, process.env.DB_PASS!);
+} else {
+  connectDevDB();
+}
 
 // View body in request
 app.use(express.json());
