@@ -13,13 +13,15 @@ export const bodyValidation = (req: CadastryRequestType, res: CadastryResponseTy
 
 async function cadastryUserController(req: CadastryRequestType, res: CadastryResponseType) {
   const body = req.body;
+
   const save = async () => {
     try {
-      const { cadastryUserSchema, error } = new cadastryUser({ ...body });
-      await cadastryUserSchema();
-      
-      const ErrorMessage = JSON.stringify(error);
-      if (error) throw new Error(ErrorMessage);
+      const response = new cadastryUser({ ...body });
+      await response.cadastryUserSchema();
+      if (response.error) {
+        const ErrorMessage = JSON.stringify(response.error);
+        throw new Error(ErrorMessage);
+      } 
       return res.status(201).json();
     } catch (err) {
       const { status, message } = JSON.parse(err.message);
