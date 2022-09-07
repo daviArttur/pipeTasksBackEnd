@@ -10,9 +10,10 @@ jobs:
       DB_PASS: ${{ secrets.DB_PASS }}
       DB_USER: ${{ secrets.DB_USER }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      PORT: ${{ secrets.PORT }}
     steps:
       - name: Create
-        run: echo -e DB_USER='"$DB_USER"\n'JWT_SECRET='"$JWT_SECRET"\n'DB_PASS='"$DB_PASS"\n' > .env
+        run: echo -e DB_USER='"$DB_USER"\n'JWT_SECRET='"$JWT_SECRET"\n'DB_PASS='"$DB_PASS"\n'PORT='"$PORT"\n' > .env
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  
