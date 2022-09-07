@@ -1,10 +1,14 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { Request, Response } from "express";
-import createJwtToken from "../../helper/jwt/createJwtToken";
-import ComparePassword from "../../helper/login/comparePassword";
 
-async function authController (req: Request, res: Response) {
+// Helper Functions
+import ComparePassword from "../../helper/login/comparePassword";
+import createJwtToken from "../../helper/jwt/createJwtToken";
+
+// Types
+import type { AuthRequestType, AuthResponseType } from "../../interface/auth/authInterface";
+
+async function authController (req: AuthRequestType, res: AuthResponseType) {
   const { email, password } = req.body;
 
   const { status, message, id } = await new ComparePassword(email, password).getUserDb();
