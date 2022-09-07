@@ -2,7 +2,9 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "testw": "jest --watchAll",
+    "test:handles": "jest --detectOpenHandles ",
+    "test:force": "jest --forceExit",
+    "test:watch": "jest --watchAll",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts"
   },
   "dependencies": {
@@ -15,8 +17,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.9.0",
     "mongoose": "^6.5.2",
-    "ts-node-dev": "^1.1.8",
-    "supertest": "^6.2.4"
+    "supertest": "^6.2.4",
+    "ts-node-dev": "^1.1.8"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.10",
