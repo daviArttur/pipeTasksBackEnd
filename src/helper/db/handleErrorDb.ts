@@ -13,7 +13,8 @@ class handleErrorDb {
   setError(): number | null {
     switch (this.#errorCode) {
     case 11000:
-      return this.status = 409;
+      this.message = "Já existe uma conta cadastrada com esses dados";
+      return this.status = 406;
     default: 
       return this.status = 500;
     }

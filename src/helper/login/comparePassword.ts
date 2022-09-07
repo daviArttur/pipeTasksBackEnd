@@ -12,7 +12,6 @@ class ComparePassword {
   constructor(email: string, password: string) {
     this.#email = email;
     this.#password = password;
-    this.getUserDb();
   }
 
   async getUserDb(): Promise<{ status: number, message?: string, id?: string }> {
@@ -26,7 +25,7 @@ class ComparePassword {
       }
       
     } catch (err) {
-      return { status: 404, message: err.message };
+      return { status: 403, message: err.message };
     }
   }
 
@@ -35,7 +34,7 @@ class ComparePassword {
     return compare ?
       { status: 200, id: UserId } 
       :
-      { status: 404, message: "Email ou senha inválidos" };
+      { status: 403, message: "Email ou senha inválidos" };
   }
 }
 
