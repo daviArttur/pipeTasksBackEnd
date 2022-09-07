@@ -1,7 +1,14 @@
-import { MongoServerError } from "mongodb";
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
+
+// Schema
+import { cadastryUserSchema } from "../../../Schemas/cadastryUserSchema";
+
+// Helper
 import handleErrorDb from "../../../helper/db/handleErrorDb";
 import hashValue from "../../../helper/hashValue";
+
+// Types
+import type { MongoServerError } from "mongodb";
 
 interface IcreateUser {
   name: string,
@@ -9,33 +16,6 @@ interface IcreateUser {
   email: string,
   password: string
 }
-
-const userSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  surname: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    lowercase: true,
-    unique: true,
-    required: true
-  },
-  password: {
-    type: String,
-    select: false,
-    required: true
-  },
-  created: {
-    type: Date,
-    default: Date.now(),
-    immutable: true
-  }
-});
 
 class cadastryUser {
   #body: IcreateUser;
@@ -58,7 +38,7 @@ class cadastryUser {
   }
 
   async createSchema() {
-    const modelUser = mongoose.model("user", userSchema);
+    const modelUser = mongoose.model("user", cadastryUserSchema);
     this.userSchema = new modelUser({ ...this.#body });
     return this.userSchema;
   }
