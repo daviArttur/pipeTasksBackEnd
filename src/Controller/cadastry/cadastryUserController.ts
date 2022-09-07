@@ -1,30 +1,32 @@
-import BodyValidation from "./validation";
 import cadastryUser from "../../Models/user/cadastry/cadastryUserModel";
-import { Request, Response } from "express";
+import { CadastryRequestType, CadastryResponseType } from "../../interface/cadastry/cadastryInterface";
+import { validationResult } from "express-validator";
+import { NextFunction } from "express";
 
-async function cadastryUserController(req: Request, res: Response) {
-  const { status, message, body } = new BodyValidation(req.body);
-
-  const ValidationPassed = status === 201 && message === undefined;
-
-  if (ValidationPassed) {
-    const save = async () => {
-      try {
-        const response = new cadastryUser({ ...body });
-        await response.cadastryUserSchema();
-        
-        const ErrorInString = JSON.stringify(response.error);
-        if (response.error) throw new Error(ErrorInString);
-        return res.status(201).json();
-      } catch (err) {
-        const { status, message } = JSON.parse(err.message);
-        return res.status(status).json(message);
-      }
-    };
-    return save();
-  } else {
-    return res.status(status).json(message);
+export const bodyValidation = (req: CadastryRequestType, res: CadastryResponseType, next: NextFunction) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
+  return next();
+};
+
+async function cadastryUserController(req: CadastryRequestType, res: CadastryResponseType) {
+  const body = req.body;
+  const save = async () => {
+    try {
+      const { cadastryUserSchema, error } = new cadastryUser({ ...body });
+      await cadastryUserSchema();
+      
+      const ErrorMessage = JSON.stringify(error);
+      if (error) throw new Error(ErrorMessage);
+      return res.status(201).json();
+    } catch (err) {
+      const { status, message } = JSON.parse(err.message);
+      return res.status(status).json(message);
+    }
+  };
+  return save();
 }
 
 export default cadastryUserController;
