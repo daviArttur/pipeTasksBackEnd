@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Helper Functions
-import ComparePassword from "../../Models/user/auth/comparePassword";
+import ComparePassword from "./auth/comparePassword";
 import createJwtToken from "../../helper/jwt/createJwtToken";
 
 // Types
