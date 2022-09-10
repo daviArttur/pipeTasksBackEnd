@@ -1,20 +1,16 @@
-import mongoose, { ObjectId, Schema } from "mongoose";
+import mongoose, { Schema, ObjectId, Date } from "mongoose";
 
 type SchemaTypeReturn = mongoose.Schema<{
   name: string,
   surname: string,
   email: string, 
   password: string
-  _id: ObjectId
+  id: ObjectId
+  created: Date
 }>
 
 export const schema: SchemaTypeReturn = new Schema({
-  email: {
-    type: String,
-    lowercase: true,
-    required: true
-  },
-  password: {
+  id: {
     type: String,
     required: true
   }
