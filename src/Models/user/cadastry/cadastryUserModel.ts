@@ -38,7 +38,7 @@ class cadastryUser {
   }
 
   async createSchema() {
-    const modelUser = mongoose.model("user", cadastryUserSchema);
+    const modelUser = mongoose.model("cadastry", cadastryUserSchema, "users");
     this.userSchema = new modelUser({ ...this.#body });
     return this.userSchema;
   }

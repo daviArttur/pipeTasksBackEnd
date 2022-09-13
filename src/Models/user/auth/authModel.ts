@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 import { schema } from "../../../Schemas/authSchema";
 
-const authModel = mongoose.model("users", schema);
+const authModel = mongoose.model("authentication", schema, "users");
 
 class AuthSchema{
   #email: string;

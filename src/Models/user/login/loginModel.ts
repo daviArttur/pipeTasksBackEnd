@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { schema } from "../../../Schemas/loginSchema";
 
-const model = mongoose.model("users", schema);
+const model = mongoose.model("login", schema, "users");
 
 export class loginModel {
   #id: string;
