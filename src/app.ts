@@ -5,6 +5,7 @@ dotenv.config();
 // Router
 import routerCadastry from "./Routes/cadastry/cadastry";
 import routerAuth from "./Routes/auth/auth";
+import routerLogin from "./Routes/login/login";
 
 // Connect DB
 import connectDevDB from "../db/connect";
@@ -33,5 +34,6 @@ app.use("/", routerCadastry);
 
 app.use("/", routerAuth);
 
+app.use("/", routerLogin);
 
 export default app;
