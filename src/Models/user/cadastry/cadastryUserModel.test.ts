@@ -5,18 +5,12 @@ import bcrypt from "bcryptjs";
 import UserObjectExample from "../../../helper/UserObjectExample";
 import connect from "../../../helper/test/connect";
 import mongoose from "mongoose";
+import { UserExistentInDb } from "../../../helper/test/UserExistentInDb";
 
 const newUser = { 
   name: "Marks",
   surname: "Alves",
   email: "marksalves@example.com",
-  password: "F73b2D"
-};
-
-const existingUser = {
-  name: "User",
-  surname: "Default",
-  email: "default@example.com",
   password: "F73b2D"
 };
 
@@ -29,6 +23,8 @@ describe("unit test for cadastryUserModel.test.ts", () => {
   afterEach( async () => {
     await mongoose.disconnect();
   });
+
+  const { name, surname, email, password } = UserExistentInDb;
 
   it("it must add a hash to the password", () => {
     const { password } = UserObjectExample;
@@ -52,7 +48,7 @@ describe("unit test for cadastryUserModel.test.ts", () => {
   });
 
   it("should return status error 406 if the user already exists", async () => {
-    const response = new cadastryUser(existingUser);
+    const response = new cadastryUser({ name, surname, email, password });
     const UserSaveStatus = await response.cadastryUserSchema();
     
     expect(UserSaveStatus.status === 406).toBeTruthy();

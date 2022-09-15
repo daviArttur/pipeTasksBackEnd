@@ -16,7 +16,7 @@ import type { DeleteResult } from "mongodb";
 
 // User Objects
 import UserObjectExample from "../../helper/UserObjectExample";
-import ExistingUseInDb from "../../helper/test/ExistingUseInDb";
+import { UserExistentInDb } from "../../helper/test/UserExistentInDb";
 
 describe("integration test for user registration", () => {
   const { name, surname, email, password } = UserObjectExample;
@@ -42,7 +42,7 @@ describe("integration test for user registration", () => {
   it("return status 406 to existing user in DB ", async () => {
     const { status, body } = await request(app)
       .post("/cadastry")
-      .send(ExistingUseInDb);
+      .send(UserExistentInDb);
 
     expect(body.errors).toBeTruthy();
     expect(status === 406).toBeTruthy();
@@ -51,7 +51,7 @@ describe("integration test for user registration", () => {
   it("must return status 400 to ma invalid body", async () => {
     const { status, body } = await request(app)
       .post("/cadastry")
-      .send({ name: "Exam ple", surname: "12Ge", "email": "aa11asd@;_.com", password: " " });
+      .send({ name: "Exam ple", surname: "12Ge", email: "aa11asd@;_.com", password: " " });
 
     expect(body.errors.length === 4).toBeTruthy();
     expect(status === 400).toBeTruthy();

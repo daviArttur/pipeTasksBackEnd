@@ -2,9 +2,11 @@ import app from "../../app";
 import dotenv from "dotenv";
 dotenv.config();
 import request from "supertest";
+import { UserExistentInDb } from "../../helper/test/UserExistentInDb";
 
 describe("integration test for login route", () => {
 
+  const { name, surname, email, password, id, created } = UserExistentInDb;
   it("should return 400 for bad request", async () => {
     const response = await request(app)
       .get("/login")
@@ -18,8 +20,8 @@ describe("integration test for login route", () => {
     const { body } = await request(app)
       .post("/auth")
       .send({
-        email: "default@example.com",
-        password: "D3f@ltP3"
+        email,
+        password
       });
     
     const response = await request(app)
@@ -29,21 +31,21 @@ describe("integration test for login route", () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
       data: {
-        name: "default",
-        surname: "default",
-        id: "631cd4f4d272977b24be19f3",
-        email: "default@example.com",
-        created: "2022-09-07T21:09:22.087+00:00"
+        name,
+        surname,
+        id,
+        email,
+        created
       }
     });
   });
 
-  it("should return user data if token validy", async () => {
+  it("must return status 403 if authorization in the header is valid", async () => {
     const { body } = await request(app)
       .post("/auth")
       .send({
-        email: "default@example.com",
-        password: "D3f@ltP3"
+        email,
+        password
       });
     
     const response = await request(app)

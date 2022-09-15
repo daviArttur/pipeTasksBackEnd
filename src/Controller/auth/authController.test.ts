@@ -4,6 +4,7 @@ import app from "../../app";
 // Test
 import request from "supertest";
 import mongoose from "mongoose";
+import { UserExistentInDb } from "../../helper/test/UserExistentInDb";
 
 type BodySupertestType = {
   errors: {
@@ -20,12 +21,14 @@ describe("Integration test for authentication route", () => {
     await mongoose.disconnect();
   });
 
+  const { email, password } = UserExistentInDb;
+
   it("should return status 400 for bad request", async () => {
     
     const { body, status } = await request(app)
       .post("/auth")
       .send({ 
-        email: "qweqweqw",
+        email: "wrongemailfake.com",
         password: "asd asd"
       });
 
@@ -38,8 +41,8 @@ describe("Integration test for authentication route", () => {
     const { body, status } = await request(app)
       .post("/auth")
       .send({ 
-        email: "default@example.com",
-        password: "D3f@ltP3"
+        email,
+        password
       });
 
     expect(status).toBe(200);
