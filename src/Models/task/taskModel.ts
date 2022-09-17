@@ -12,6 +12,12 @@ export interface ITask {
   }
 }
 
+export type IGetOneTask = Pick<ITask, "userId" | "_id">
+export type IDeleteTask = Pick<ITask, "userId" | "_id">
+export type IUpdateTask = Partial<Omit<ITask, "createdAt" | "_id" | "userId">>
+export type ICreateTask = Omit<ITask, "_id" | "finished" | "createdAt">
+
+
 
 const schema = new Schema<ITask>({
   userId: {
