@@ -39,8 +39,7 @@ describe("" , () => {
   });
 
   it("should be possible update existent task", async () => {
-    const { _id, userId } = await new Task(newTask).save();
-
+    const { content } = await new Task(newTask).save();
     const uptateTask = { 
       title: "example_title",
       description: "update description using the update method of the Task class" ,
@@ -50,10 +49,10 @@ describe("" , () => {
       }
     };
 
-    const updatedTask: UpdateResult = await Task.update({ _id, userId }, uptateTask);
+    const updatedTask: UpdateResult = await Task.update({ _id: content!._id, userId: content!.userId }, uptateTask);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const getTaskUpdated: any = await Task.getOne({ _id, userId });
+    const getTaskUpdated: any = await Task.getOne({ _id: content!._id, userId: content!.userId });
     expect(getTaskUpdated.description).toBe(uptateTask.description);
     expect(getTaskUpdated.title).toBe(uptateTask.title);
     expect(getTaskUpdated.finished.status).toBe(uptateTask.finished.status);
@@ -62,24 +61,24 @@ describe("" , () => {
     expect(updatedTask.matchedCount).toBe(1);
     expect(updatedTask.modifiedCount).toBe(1);
 
-    await Task.delete({ _id, userId });
+    await Task.delete({ _id: content!._id, userId: content!.userId });
   });
 
   it("should be possible create a new task", async () => {
     const createdTask = await new Task(newTask).save();
     
-    expect(createdTask._id).toBeTruthy();
-    expect(createdTask.createdAt).toBeTruthy();
-    expect(createdTask.description).toBe(newTask.description);
-    expect(createdTask.title).toBe(newTask.title);
-    expect(createdTask.finished?.status).toBeFalsy();
-    await Task.delete({ _id: createdTask._id, userId: createdTask.userId });
+    expect(createdTask.content!.userId).toBeTruthy();
+    expect(createdTask.content!.createdAt).toBeTruthy();
+    expect(createdTask.content!.description).toBe(newTask.description);
+    expect(createdTask.content!.title).toBe(newTask.title);
+    expect(createdTask.content!.finished!.status).toBeFalsy();
+    await Task.delete({ _id: createdTask.content!._id, userId: createdTask.content!.userId });
   });
 
   it("should delete the task using arguments sended", async () => {
     const createTask = await new Task(newTask).save();
 
-    const deletedTask: DeleteResult = await Task.delete({ _id: createTask._id, userId: createTask.userId });
+    const deletedTask: DeleteResult = await Task.delete({ _id: createTask.content!._id, userId: createTask.content!.userId });
 
     expect(deletedTask.deletedCount).toBe(1);
     expect(deletedTask.acknowledged).toBe(true);

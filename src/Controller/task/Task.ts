@@ -31,13 +31,13 @@ class Task {
     }
   }
 
-  public async save(): Promise<ITask> {
+  public async save() {
     try {
       const Task = new taskModel(this.task);
-      const saveTask = await Task.save();
-      return saveTask;
+      const savedTask = await Task.save();
+      return { err: false, content: savedTask };
     } catch (err) {
-      return err.message;
+      return { err: true, message: err.message };
     }
   }
 
