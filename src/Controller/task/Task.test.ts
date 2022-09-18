@@ -9,7 +9,7 @@ import { taskModel } from "../../Models/task/taskModel";
 import connect from "../../helper/test/connect";
 
 // Types
-import type { DeleteResult, UpdateResult } from "mongodb";
+import type { DeleteResult } from "mongodb";
 
 const newTask = {
   userId: "630b95baeeca6dd5312d45ed",
@@ -42,24 +42,18 @@ describe("" , () => {
     const { content } = await new Task(newTask).save();
     const uptateTask = { 
       title: "example_title",
-      description: "update description using the update method of the Task class" ,
-      finished: {
-        status: true,
-        at: new Date()
-      }
+      description: "update description using the update method of the Task class",
     };
 
-    const updatedTask: UpdateResult = await Task.update({ _id: content!._id, userId: content!.userId }, uptateTask);
+    const updatedTask = await Task.update({ _id: content!._id, userId: content!.userId }, uptateTask);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const getTaskUpdated: any = await Task.getOne({ _id: content!._id, userId: content!.userId });
     expect(getTaskUpdated.description).toBe(uptateTask.description);
     expect(getTaskUpdated.title).toBe(uptateTask.title);
-    expect(getTaskUpdated.finished.status).toBe(uptateTask.finished.status);
-    expect(getTaskUpdated.finished.at).toBeTruthy();
-    expect(updatedTask.acknowledged).toBe(true);
-    expect(updatedTask.matchedCount).toBe(1);
-    expect(updatedTask.modifiedCount).toBe(1);
+    expect(updatedTask.content!.acknowledged).toBe(true);
+    expect(updatedTask.content!.matchedCount).toBe(1);
+    expect(updatedTask.content!.modifiedCount).toBe(1);
 
     await Task.delete({ _id: content!._id, userId: content!.userId });
   });

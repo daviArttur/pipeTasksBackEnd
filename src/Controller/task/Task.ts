@@ -44,10 +44,10 @@ class Task {
   public static async update({ _id, userId }: Pick<ITask, "userId" | "_id">, task: IUpdateTask) {
     try {
       const updatedTask = await taskModel.findOne({ _id, userId }).updateOne({ ...task });
-      if (!updatedTask) throw new Error();
-      return updatedTask;
+      if (!updatedTask) throw new Error(updatedTask);
+      return { err: false, content: updatedTask };
     } catch (err) {
-      return err;
+      return { err: true, message: err.message };
     }
   }
 
