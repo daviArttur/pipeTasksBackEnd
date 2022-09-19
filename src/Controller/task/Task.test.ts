@@ -58,6 +58,22 @@ describe("" , () => {
     await Task.delete({ _id: content!._id, userId: content!.userId });
   });
 
+  it("should be possible finish existent task", async () => {
+    const { content } = await new Task(newTask).save();
+    const updatedTask = await Task.finish({ _id: content!._id, userId: content!.userId });
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const getTaskUpdated: any = await Task.getOne({ _id: content!._id, userId: content!.userId });
+
+    expect(getTaskUpdated.finished.status).toBeTruthy();
+    expect(getTaskUpdated.finished.at).toBeTruthy();
+    expect(updatedTask.content!.acknowledged).toBe(true);
+    expect(updatedTask.content!.matchedCount).toBe(1);
+    expect(updatedTask.content!.modifiedCount).toBe(1);
+
+    await Task.delete({ _id: content!._id, userId: content!.userId });
+  });
+
   it("should be possible create a new task", async () => {
     const createdTask = await new Task(newTask).save();
     

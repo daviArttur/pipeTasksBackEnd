@@ -51,6 +51,16 @@ class Task {
     }
   }
 
+  public static async finish({ _id, userId }: Pick<ITask, "userId" | "_id">) {
+    try {
+      const finishedTask = await taskModel.findOne({ _id, userId }).updateOne({ finished: { status: true, at: new Date() } });
+      if (!finishedTask) throw new Error(finishedTask);
+      return { err: false, content: finishedTask };
+    } catch (err) {
+      return { err: true, message: err.message };
+    }
+  }
+
   public static async delete({ _id, userId }: IDeleteTask) {
     try {
       const deletedTask = await taskModel.deleteOne({ userId, _id: new ObjectId(_id) });
