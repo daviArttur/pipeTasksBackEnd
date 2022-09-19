@@ -24,6 +24,8 @@ describe("", () => {
       .delete("/deleteAccount")
       .set("Authorization", "Bearer "+token.body.token);
 
-    console.log(status, body);
+    expect(status).toBe(200);
+    expect(body.user).toBeTruthy();
+    expect(body.task).toBeTruthy();
   });
 });
