@@ -7,10 +7,12 @@ import routerCadastry from "./Routes/cadastry/cadastry";
 import routerAuth from "./Routes/auth/auth";
 import routerLogin from "./Routes/login/login";
 import taskRouter from "./Routes/task/index";
+import { routerDeleteAccount } from "./Routes/deleteAccount/deleteAccountRoute";
 
 // Connect DB
 import connectDevDB from "../db/connect";
 import connectTestDB from "./helper/test/connect";
+
 
 if (process.env.NODE_ENV === "test" || process.env.ENVIROMENT === "production") {
   connectTestDB(process.env.DB_USER!, process.env.DB_PASS!);
@@ -36,6 +38,10 @@ app.use("/", routerCadastry);
 app.use("/", routerAuth);
 
 app.use("/", routerLogin);
+
+app.use("/", routerLogin);
+
+app.use("/", routerDeleteAccount);
 
 app.use("/task", taskRouter);
 
