@@ -4,8 +4,6 @@ import request from "supertest";
 import { userModel } from "../../Models/user/user";
 import mongoose from "mongoose";
 
- 
-
 describe("integration test for resetPasswordController", () => {
   const { email, name, surname, password } = UserObjectExample;
   const User = { email, name, surname, password };
