@@ -11,6 +11,7 @@ jobs:
       DB_USER: ${{ secrets.DB_USER }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       ENVIROMENT: ${{ secrets.ENVIROMENT }}
+      EMAIL_CREDENTIAL: ${{ secrets.EMAIL_CREDENTIAL }}
     steps:
       - name: Create
         run: echo -e DB_USER='"$DB_USER"\n'JWT_SECRET='"$JWT_SECRET"\n'DB_PASS='"$DB_PASS"\n'ENVIROMENT='"$ENVIROMENT"\n' > .env

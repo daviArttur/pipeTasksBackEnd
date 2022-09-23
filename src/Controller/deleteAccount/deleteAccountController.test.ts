@@ -25,7 +25,7 @@ describe("", () => {
       .set("Authorization", "Bearer "+token.body.token);
 
     expect(status).toBe(200);
-    expect(body.user).toBeTruthy();
-    expect(body.task).toBeTruthy();
+    expect(body.user.acknowledged).toBeTruthy();
+    expect(body.task.acknowledged).toBeTruthy();
   });
 });
