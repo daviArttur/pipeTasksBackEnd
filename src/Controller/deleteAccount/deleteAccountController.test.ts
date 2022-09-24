@@ -1,13 +1,18 @@
-import app from "../../app";
-import UserObjectExample from "../../helper/UserObjectExample";
+// Test
 import request from "supertest";
 
-describe("", () => {
+// App
+import app from "../../app";
+
+// User example
+import UserObjectExample from "../../helper/UserObjectExample";
+
+describe("Integration test for deleteAccountController", () => {
 
   const { name, surname, email, password } = UserObjectExample;
   const User = { name, surname, email, password };
 
-  it("shold be possible  delete account", async () => {
+  it("shold be possible delete account", async () => {
 
     await request(app).post("/cadastry")
       .set("Content-Type", "application/json")

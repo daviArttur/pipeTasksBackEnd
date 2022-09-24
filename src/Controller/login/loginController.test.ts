@@ -1,7 +1,13 @@
-import app from "../../app";
 import dotenv from "dotenv";
 dotenv.config();
+
+// App
+import app from "../../app";
+
+// Test
 import request from "supertest";
+
+// User example
 import { UserExistentInDb } from "../../helper/test/UserExistentInDb";
 
 describe("integration test for login route", () => {

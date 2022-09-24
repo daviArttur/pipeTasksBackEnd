@@ -1,5 +1,10 @@
-import { Router } from "express";
+// Controller
 import { deleteAcountController, handleErrors } from "../../Controller/deleteAccount/deleteAccountController";
+
+// Express
+import { Router } from "express";
+
+// Validate token
 import { validateToken } from "../../Controller/login/loginController";
 
 const routerDeleteAccount = Router();

@@ -1,7 +1,14 @@
-import { Router } from "express";
-import { body } from "express-validator";
-import { setNewPasswordController, handleErrors } from "../../Controller/setNewPassword/setNewPassword";
+// Utils
 import { catchBadRequest } from "../../Routes/utils/catchBadRequest";
+
+// Express validator
+import { body } from "express-validator";
+
+// Express
+import { Router } from "express";
+
+// Controller
+import { setNewPasswordController, handleErrors } from "../../Controller/setNewPassword/setNewPassword";
 
 const routerSetNewPasswordPassword = Router();
 

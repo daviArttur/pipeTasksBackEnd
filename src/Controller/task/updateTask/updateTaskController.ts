@@ -1,8 +1,9 @@
-import { NextFunction } from "express";
-import { IUpdateTask } from "../../../Models/task/taskModel";
-import { IUpdateTaskResponse, IUpdateTaskRequest } from "../../../interface/task/updateTaskInterface";
 import { Task } from "../Task";
 
+// Types
+import type { NextFunction } from "express";
+import type { IUpdateTask } from "../../../Models/task/taskModel";
+import type{ IUpdateTaskResponse, IUpdateTaskRequest } from "../../../interface/task/updateTaskInterface";
 
 class Controller {
   private task: IUpdateTask;

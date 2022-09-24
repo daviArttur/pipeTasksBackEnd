@@ -1,7 +1,11 @@
-import { NextFunction } from "express";
 import hashValue from "../../helper/hashValue";
-import { setNewPasswordRequestType, setNewPasswordResponseType } from "../../interface/setNewPassword/setNewPassword";
+
+// Model
 import { userModel } from "../../Models/user/user";
+
+// Types
+import type { setNewPasswordRequestType, setNewPasswordResponseType } from "../../interface/setNewPassword/setNewPassword";
+import type { NextFunction } from "express";
 
 class Controller {
   private password: string;

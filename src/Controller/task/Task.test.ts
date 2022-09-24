@@ -1,6 +1,7 @@
-
-import mongoose from "mongoose";
 import { Task } from "./Task";
+
+// Orm
+import mongoose from "mongoose";
 
 // Model
 import { taskModel } from "../../Models/task/taskModel";

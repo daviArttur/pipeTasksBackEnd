@@ -1,7 +1,10 @@
-import { NextFunction } from "express";
-import { deleteAccountRequestType, deleteAccountResponseType } from "src/interface/deleteAccount/deleteAccountInterface";
-import { taskModel } from "../../Models/task/taskModel";
+// Types
+import type { deleteAccountRequestType, deleteAccountResponseType } from "src/interface/deleteAccount/deleteAccountInterface";
+import type { NextFunction } from "express";
+
+// Model
 import { userModel } from "../../Models/user/user";
+import { taskModel } from "../../Models/task/taskModel";
 
 class Controller {
   private userId: string;

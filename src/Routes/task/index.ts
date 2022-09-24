@@ -1,13 +1,17 @@
 import { Router, NextFunction, Request, Response } from "express";
 import { validateToken } from "../../Controller/token/validateToken";
-import { getTaskController } from "../../Controller/task/getTask/getTaskController";
-import { saveTaskRoute } from "./saveTask/saveTaskRoute";
-import { updateTaskRoute } from "./updateTask/updateTaskRoute";
+
+// Controller
 import { finishTaskController } from "../../Controller/task/finishTask/finishTaskController";
+import { getTaskController } from "../../Controller/task/getTask/getTaskController";
+
+// Routes
+import { updateTaskRoute } from "./updateTask/updateTaskRoute";
+import { saveTaskRoute } from "./saveTask/saveTaskRoute";
+
 const router = Router();
 
 router.use(validateToken);
-
 
 router.get("/get/:limit", getTaskController);
 

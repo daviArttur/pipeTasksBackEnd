@@ -1,7 +1,16 @@
-import app from "../../app";
-import UserObjectExample from "../../helper/UserObjectExample";
-import request from "supertest";
+// Model
 import { userModel } from "../../Models/user/user";
+
+// Test
+import request from "supertest";
+
+// User example
+import UserObjectExample from "../../helper/UserObjectExample";
+
+// App
+import app from "../../app";
+
+// Orm
 import mongoose from "mongoose";
 
 describe("integration test for resetPasswordController", () => {

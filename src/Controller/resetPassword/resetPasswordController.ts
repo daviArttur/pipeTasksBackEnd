@@ -1,10 +1,17 @@
-import { NextFunction } from "express";
-import nodemailer from "nodemailer";
-import { resetPasswordRequestType, resetPasswordResponseType } from "../../interface/resetPassword/resetPasswordInterface";
-import { userModel } from "../../Models/user/user";
 import dotenv from "dotenv";
 dotenv.config();
-class Controller {
+
+// Nodemailer
+import nodemailer from "nodemailer";
+
+// Model
+import { userModel } from "../../Models/user/user";
+
+// Types
+import type { NextFunction } from "express";
+import type { resetPasswordRequestType, resetPasswordResponseType } from "../../interface/resetPassword/resetPasswordInterface";
+
+export class Controller {
   private email: string;
   private res: resetPasswordResponseType;
   private next: NextFunction;

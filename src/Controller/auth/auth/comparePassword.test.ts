@@ -1,7 +1,13 @@
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 dotenv.config();
+
+// User example
 import UserObjectExample from "../../../helper/UserObjectExample";
+
+// Orm
+import mongoose from "mongoose";
+
+// Compare password
 import ComparePassword from "./comparePassword";
 
 describe("test help function comparePassword", () => {

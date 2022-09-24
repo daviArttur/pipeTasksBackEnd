@@ -1,6 +1,13 @@
-import mongoose from "mongoose";
-import app from "../../../app";
+// Test
 import request from "supertest";
+
+// Orm
+import mongoose from "mongoose";
+
+// App
+import app from "../../../app";
+
+// User example
 import { UserExistentInDb } from "../../../helper/test/UserExistentInDb";
 
 describe("integration test for saveTaskController", () => {

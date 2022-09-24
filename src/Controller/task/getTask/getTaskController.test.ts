@@ -1,8 +1,11 @@
-import app from "../../../app";
+// Test
 import request from "supertest";
+
+// App
+import app from "../../../app";
+
+// User Obeject
 import { UserExistentInDb } from "../../../helper/test/UserExistentInDb";
-
-
 describe("integration test fot get tasks", () => {
 
   const { email, password } = UserExistentInDb;

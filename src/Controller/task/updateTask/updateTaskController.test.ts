@@ -1,8 +1,18 @@
-import app from "../../../app";
-import { UserExistentInDb } from "../../../helper/test/UserExistentInDb";
-import require from "supertest";
 import { Task } from "../Task";
+
+// Require
+import require from "supertest";
+
+// App
+import app from "../../../app";
+
+// User exaple
+import { UserExistentInDb } from "../../../helper/test/UserExistentInDb";
+
+// Connect Db
 import connect from "../../../helper/test/connect";
+
+// Orm
 import mongoose from "mongoose";
 
 describe("integration test for updateTask", () => {

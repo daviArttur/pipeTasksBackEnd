@@ -1,6 +1,9 @@
+// Decode token
 import { DecodeToken } from "../../helper/jsonwt/tokenValidate";
-import { LoginRequestType, LoginResponseType } from "src/interface/login/loginInterface";
-import { NextFunction } from "express";
+
+// Types
+import type { NextFunction } from "express";
+import type { LoginRequestType, LoginResponseType } from "src/interface/login/loginInterface";
 
 export const validateToken = (req: LoginRequestType & { id: string }, res: LoginResponseType, next: NextFunction) => {
   const tokenInHeader = req.headers.authorization!;

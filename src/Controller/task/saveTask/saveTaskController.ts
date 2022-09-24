@@ -1,7 +1,9 @@
-import { NextFunction } from "express";
-import { saveTaskRequestType, saveTaskResponseType } from "src/interface/task/postTaskInterface";
-import { ICreateTask } from "../../../Models/task/taskModel";
 import { Task } from "../Task";
+
+// Types
+import type { saveTaskRequestType, saveTaskResponseType } from "src/interface/task/postTaskInterface";
+import type { ICreateTask } from "../../../Models/task/taskModel";
+import type { NextFunction } from "express";
 
 class Controller {
   private task: ICreateTask;

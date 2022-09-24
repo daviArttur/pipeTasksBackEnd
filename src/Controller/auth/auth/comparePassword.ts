@@ -1,6 +1,8 @@
+// Bcrypt
 import bcrypt from "bcryptjs";
-import authModel from "../../../Models/user/auth/authModel";
 
+// Model
+import authModel from "../../../Models/user/auth/authModel";
 
 class ComparePassword {
   #email: string;

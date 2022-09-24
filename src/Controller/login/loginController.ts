@@ -1,8 +1,15 @@
-import type { NextFunction } from "express";
+// Express Validator
 import { validationResult } from "express-validator";
+
+// Model
 import { loginModel } from "../../Models/user/login/loginModel";
-import type { LoginRequestType, LoginResponseType } from "../../interface/login/loginInterface";
+
+// Decode JWT Token
 import { DecodeToken } from "../../helper/jsonwt/tokenValidate";
+
+// Types
+import type { NextFunction } from "express";
+import type { LoginRequestType, LoginResponseType } from "../../interface/login/loginInterface";
 
 export const bodyValidation = (req: LoginRequestType, res: LoginResponseType, next: NextFunction) => {
   const errors = validationResult(req);

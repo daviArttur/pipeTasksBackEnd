@@ -3,7 +3,11 @@ import app from "../../app";
 
 // Test
 import request from "supertest";
+
+// Orm
 import mongoose from "mongoose";
+
+// User Object
 import { UserExistentInDb } from "../../helper/test/UserExistentInDb";
 
 type BodySupertestType = {

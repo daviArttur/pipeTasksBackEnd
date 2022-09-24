@@ -1,6 +1,11 @@
-import { Router } from "express";
-import { header } from "express-validator";
+// Controller
 import { bodyValidation, loginController, validateToken } from "../../Controller/login/loginController";
+
+// Express validator
+import { header } from "express-validator";
+
+// Express
+import { Router } from "express";
 
 const router = Router();
 

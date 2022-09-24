@@ -1,7 +1,15 @@
-import { Router } from "express";
-import { body } from "express-validator";
-import { catchBadRequest } from "../../../Routes/utils/catchBadRequest";
+// Handle errors
 import { handleErrors, updateTaskController } from "../../../Controller/task/updateTask/updateTaskController";
+
+// Utils
+import { catchBadRequest } from "../../../Routes/utils/catchBadRequest";
+
+// Express
+import { Router } from "express";
+
+// Validator
+import { body } from "express-validator";
+
 const updateTaskRoute = Router();
 
 updateTaskRoute.patch("",
