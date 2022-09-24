@@ -23,5 +23,5 @@ describe("test Model for user login", () => {
     expect(User!.name).toBe(name);
     expect(User!.surname).toBe(surname);
     expect(User!.email).toBe(email);
-  });
+  }, 10000);
 });

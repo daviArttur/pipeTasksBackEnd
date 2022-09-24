@@ -10,6 +10,9 @@ import app from "../../../app";
 // User example
 import { UserExistentInDb } from "../../../helper/test/UserExistentInDb";
 
+// Class controller
+import { Task } from "../Task";
+
 describe("integration test for saveTaskController", () => {
 
   afterAll( async () => {
@@ -37,13 +40,14 @@ describe("integration test for saveTaskController", () => {
       .set("Authorization", "Bearer "+response.body.token)
       .send(newTask);
     
-    const { title, description, userId, finished } = body.content;
+    const { title, description, userId, finished, _id } = body.content;
     expect(title).toBe(newTask.title);
     expect(description).toBe(newTask.description);
     expect(userId).toBe(newTask.userId);
     expect(finished.at).toBe(null);
     expect(finished.status).toBe(false);
     expect(status).toBe(201);
+    await Task.delete({ _id, userId: userId})
   });
 
   it("should status 400 for bad request", async () => {
