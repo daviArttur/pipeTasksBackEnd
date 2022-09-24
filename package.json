@@ -6,6 +6,7 @@
     "test:force": "jest --forceExit",
     "test:watch": "jest --watchAll",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "start": "pm2 start app.ts --name=app --watch",
     "email": "ts-node-dev --respawn --transpile-only src/Controller/resetPassword/resetPasswordController.ts"
   },
   "dependencies": {
