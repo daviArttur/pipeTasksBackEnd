@@ -22,6 +22,8 @@ export class DecodeToken {
   public decode(): IDecodeToken {
     try {
       const formatedToken = this.format(this.token);
+      if(!formatedToken) throw new Error("authorization malformed")
+      console.log(formatedToken)
       const result = jwt.verify(formatedToken!, process.env.JWT_SECRET!) as JwtPayload & { id: string };
       if (!result.id) throw new Error(JSON.stringify(result));
       return { status: 200, id: result.id };
@@ -40,6 +42,8 @@ export class DecodeToken {
       return { status: 403, errors: message };
     case "invalid token":
       return { status: 403, errors: message };
+    case "authorization malformed":
+      return { status: 400, errors: message };
     default:
       return { status: 500, errors: "Server error" };
     }
