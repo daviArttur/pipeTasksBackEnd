@@ -15,6 +15,8 @@ import connectDevDB from "../db/connect";
 import connectTestDB from "./helper/test/connect";
 import { routerResetPassword } from "./Routes/resetPassword/resetPasswordRoute";
 
+// Cors
+import cors from "cors"
 
 if (process.env.NODE_ENV === "test" || process.env.ENVIROMENT === "production") {
   connectTestDB(process.env.DB_USER!, process.env.DB_PASS!);
@@ -24,6 +26,9 @@ if (process.env.NODE_ENV === "test" || process.env.ENVIROMENT === "production") 
 }
 
 const app = express();
+
+// enable all CORS request
+app.use(cors())
 
 // Connect database
 
