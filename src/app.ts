@@ -33,7 +33,9 @@ app.use(cors())
 // Connect database
 
 if (process.env.NODE_ENV !== "test") {
-  app.listen(3000);
+  const PORT = process.env.PORT || 3000
+  app.listen(PORT);
+  console.log("Server listening on PORT"+PORT)
 }
 
 app.use(express.json());
