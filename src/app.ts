@@ -9,6 +9,7 @@ import routerLogin from "./Routes/login/login";
 import taskRouter from "./Routes/task/index";
 import { routerDeleteAccount } from "./Routes/deleteAccount/deleteAccountRoute";
 import { routerSetNewPasswordPassword } from "./Routes/setNewPassword/setNewPassword";
+import validateTokenRoute from "./Routes/validateToken/validateToken";
 
 // Connect DB
 import connectDevDB from "../db/connect";
@@ -53,6 +54,8 @@ app.use("/", routerDeleteAccount);
 app.use("/", routerResetPassword);
 
 app.use("/", routerSetNewPasswordPassword);
+
+app.use("/", validateTokenRoute);
 
 app.use("/task", taskRouter);
 

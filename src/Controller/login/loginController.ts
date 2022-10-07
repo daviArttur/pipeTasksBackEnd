@@ -20,16 +20,22 @@ export const bodyValidation = (req: LoginRequestType, res: LoginResponseType, ne
 };
 
 export const validateToken = (req: LoginRequestType & { id: string }, res: LoginResponseType, next: NextFunction) => {
-  const tokenInHeader = req.headers.authorization!;
 
-  const { id, errors, status } = new DecodeToken(tokenInHeader).decode();
+  if ("authorization" in req.headers && req.headers.authorization) {
+    const tokenInHeader = req.headers.authorization;
 
-  if (status === 200 && id) {
-    req.id = id;
-    return next();
+    const { id, errors, status } = new DecodeToken(tokenInHeader).decode();
+
+    if (status === 200 && id) {
+      req.id = id;
+      return next();
+    } else {
+      return res.status(status).json({ errors: errors });
+    }
   } else {
-    return res.status(status).json({ errors: errors });
+    return res.status(400).json({ errors: "headers not contain key 'Authorization'" });
   }
+  
 };
 
 export const loginController = async (req: LoginRequestType & { id: string }, res: LoginResponseType) => {
