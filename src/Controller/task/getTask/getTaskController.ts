@@ -11,7 +11,7 @@ class Controller {
   private res: getTaskResponseType;
 
   constructor(req: getTaskRequestType, res: getTaskResponseType, next: NextFunction) {
-    this.userId = req.body.userId;
+    this.userId = req.id;
     this.limit = Number(req.params.limit);
     this.res = res;
     this.next = next;

@@ -9,6 +9,7 @@ export type getTaskResponseType = Response<{
 }>
 
 export interface getTaskRequestType extends Request {
+  id: string,
   body: {
     userId: string,
   },
