@@ -5,6 +5,9 @@
 ## 🚀 Objetivo
 ### Essa aplicação visa suprir a necessidade de pequenas empresas e times em delegar tarefas entre si, buscamos simplificar as soluções já existentes do mercado que muitas vezes se tornam inviáveis pela complexidade de uso.
 
+## Funcionalidades
+### ✅ Login <br /> ✅ Cadastro <br /> ✅ CRUD de tarefas <br /> ✅ Recuperação de senha <br />  ⏳ Enviar tarefas para outros usuários <br />
+
 ## 🧑‍🚀 Colaboradores
 
 | Devs | GitHub | Linkedin | E-mail |
